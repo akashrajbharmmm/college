@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Riverbend Institute of Technology</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#F3F6F9; --surface:#FFFFFF; --ink:#12263F; --muted:#51647A; --line:#D5DEE8;
+  --accent:#B8362B; --accent-ink:#FFFFFF; --band:#12263F; --band-ink:#F3F6F9; --hl:#E3A72F;
+  --serif:'Bitter',Georgia,'Times New Roman',serif; --sans:'Source Sans 3',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  color-scheme:light;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E1722; --surface:#16222F; --ink:#E8EEF5; --muted:#9AAABB; --line:#2A3A4C;
+    --accent:#E2574B; --accent-ink:#0E1722; --band:#091019; --band-ink:#E8EEF5; --hl:#E3A72F; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E1722; --surface:#16222F; --ink:#E8EEF5; --muted:#9AAABB; --line:#2A3A4C;
+  --accent:#E2574B; --accent-ink:#0E1722; --band:#091019; --band-ink:#E8EEF5; --hl:#E3A72F; color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans)}
+h1,h2,h3{font-family:var(--serif);line-height:1.15;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{background:var(--band);color:var(--band-ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 0}
+.brand{font:700 20px var(--serif);text-decoration:none}
+nav{display:flex;gap:18px;flex-wrap:wrap;font-size:15px}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover,nav a:focus-visible{opacity:1;text-decoration:underline}
+.hero{padding:56px 0 48px;display:grid;gap:32px;grid-template-columns:1.3fr 1fr;align-items:end}
+.hero h1{font-size:clamp(34px,6vw,56px);max-width:14ch}
+.hero p{max-width:46ch;color:var(--muted);font-size:19px;margin:18px 0 26px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:12px 22px;border-radius:6px;font-weight:600;text-decoration:none;border:0;font-size:16px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);margin-left:8px}
+.btn:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--hl);outline-offset:2px}
+.deadline{background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--hl);padding:18px 20px;border-radius:4px}
+.deadline b{font:700 22px var(--serif);display:block;margin-bottom:4px}
+.deadline span{color:var(--muted);font-size:15px}
+section{padding:44px 0}
+section h2{font-size:30px;margin-bottom:8px}
+.sub{color:var(--muted);margin:0 0 24px;max-width:56ch}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{font:600 15px var(--sans);padding:9px 16px;border-radius:999px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;display:grid;gap:20px;grid-template-columns:2fr 1fr}
+.panel h3{font-size:24px;margin-bottom:8px}
+.panel ul{margin:0;padding-left:18px;color:var(--muted)}
+.facts{border-left:1px solid var(--line);padding-left:20px;font-size:15px}
+.facts dt{color:var(--muted)} .facts dd{margin:0 0 10px;font-weight:600}
+.notice-band{background:var(--band);color:var(--band-ink)}
+.notice-band .sub{color:#9FB0C3}
+.notices{list-style:none;margin:0;padding:0}
+.notices li{display:grid;grid-template-columns:84px 1fr;gap:16px;padding:14px 0;border-top:1px solid rgba(159,176,195,.3)}
+.notices time{font:700 15px var(--serif);color:var(--hl)}
+.cols{display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
+.cols div{border-top:3px solid var(--accent);padding-top:12px}
+.cols h3{font-size:19px;margin-bottom:6px}
+.cols p{margin:0;color:var(--muted);font-size:15.5px}
+form{display:grid;gap:12px;max-width:460px}
+label{font-weight:600;font-size:15px}
+input,select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);font:inherit;margin-top:4px}
+#msg{min-height:1.5em;color:var(--accent);font-weight:600}
+footer{background:var(--band);color:#9FB0C3;padding:28px 0;font-size:14.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:760px){
+  .hero,.panel,.cols{grid-template-columns:1fr}
+  .facts{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:14px}
+  .btn.ghost{margin:10px 0 0}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#top">Riverbend Institute of Technology</a>
+      <nav aria-label="Main">
+        <a href="#departments">Departments</a>
+        <a href="#notices">Notices</a>
+        <a href="#campus">Campus</a>
+        <a href="#apply">Apply</a>
+      </nav>
+    </div>
+    <div class="hero" id="top">
+      <div>
+        <h1>Engineering taught by people who still build things.</h1>
+        <p>A fictional college for dummy-site purposes. Four-year B.Tech programmes, working labs from the first semester, and a campus beside the river.</p>
+        <a class="btn" href="#apply">Start your application</a>
+        <a class="btn ghost" href="#departments">Browse departments</a>
+      </div>
+      <div class="deadline">
+        <b>Admissions close 30 June</b>
+        <span>Entrance results are out. Counselling begins the first week of July.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="departments">
+  <div class="wrap">
+    <h2>Departments</h2>
+    <p class="sub">Pick a department to see what you study and how it is run.</p>
+    <div class="tabs" role="tablist" aria-label="Departments" id="tabs"></div>
+    <div class="panel" id="panel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="notice-band" id="notices">
+  <div class="wrap">
+    <h2>Notice board</h2>
+    <p class="sub">Latest from the registrar’s office.</p>
+    <ul class="notices">
+      <li><time>12 Aug</time><span>Mid-semester timetable published for all years. Check your department page.</span></li>
+      <li><time>05 Aug</time><span>Library hours extended to 10 pm during the exam fortnight.</span></li>
+      <li><time>29 Jul</time><span>Hostel allotment list for first-year students is now available at the warden’s office.</span></li>
+      <li><time>18 Jul</time><span>Campus placement drive registration opens for the final-year batch.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="campus">
+  <div class="wrap">
+    <h2>On campus</h2>
+    <p class="sub">Where students actually spend their day.</p>
+    <div class="cols">
+      <div><h3>Central library</h3><p>Open reading hall, a quiet floor, and a journal archive going back to 1974.</p></div>
+      <div><h3>Innovation workshop</h3><p>3D printers, a soldering bench and a student-run repair café every Friday.</p></div>
+      <div><h3>Riverside mess</h3><p>Three meals a day, a vegetarian counter, and chai that is better than it should be.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="wrap">
+    <h2>Apply for 2027</h2>
+    <p class="sub">Tell us who you are. We will send the next steps by email.</p>
+    <form id="form">
+      <label>Full name<input name="n" required autocomplete="name"></label>
+      <label>Email<input name="e" type="email" required autocomplete="email"></label>
+      <label>Programme
+        <select name="p">
+          <option>Computer Science</option><option>Civil Engineering</option>
+          <option>Electronics</option><option>Mechanical</option>
+        </select>
+      </label>
+      <button class="btn" type="submit">Submit application</button>
+      <div id="msg" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Riverbend Institute of Technology. Dummy site, not a real college.</span>
+    <span>Riverbend Road, Anytown · +00 000 000 0000</span>
+  </div>
+</footer>
+
+<script>
+var depts=[
+ {n:"Computer Science",d:"Programming, systems and machine learning, with a project every semester.",l:["Data structures and algorithms","Operating systems and networks","Machine learning lab","Final-year capstone"],f:["Seats|120","Head|Dr. A. Verma","Lab|AI and Systems Lab"]},
+ {n:"Civil Engineering",d:"Structures, water and the ground beneath them, taught partly on live sites.",l:["Structural analysis","Geotechnical engineering","Surveying field camp","Hydrology and dams"],f:["Seats|90","Head|Dr. R. Menon","Lab|Materials Testing Lab"]},
+ {n:"Electronics",d:"Circuits, signals and embedded systems you build and debug yourself.",l:["Analog and digital circuits","Signal processing","Embedded systems","VLSI basics"],f:["Seats|90","Head|Dr. S. Iyer","Lab|Embedded Systems Lab"]},
+ {n:"Mechanical",d:"Design, thermal systems and manufacturing, from sketch to machined part.",l:["Thermodynamics","Machine design","CAD and CAM","Robotics workshop"],f:["Seats|90","Head|Dr. K. Rao","Lab|Manufacturing Workshop"]}
+];
+var tabs=document.getElementById("tabs"),panel=document.getElementById("panel");
+function show(i){
+  var d=depts[i];
+  Array.prototype.forEach.call(tabs.children,function(b,j){b.setAttribute("aria-selected",j===i)});
+  var facts=d.f.map(function(x){var p=x.split("|");return "<dt>"+p[0]+"</dt><dd>"+p[1]+"</dd>"}).join("");
+  panel.innerHTML="<div><h3>"+d.n+"</h3><p>"+d.d+"</p><ul>"+d.l.map(function(x){return "<li>"+x+"</li>"}).join("")+"</ul></div><dl class='facts'>"+facts+"</dl>";
+}
+depts.forEach(function(d,i){
+  var b=document.createElement("button");
+  b.textContent=d.n;b.setAttribute("role","tab");
+  b.onclick=function(){show(i)};
+  tabs.appendChild(b);
+});
+show(0);
+document.getElementById("form").onsubmit=function(e){
+  e.preventDefault();
+  var f=e.target;
+  document.getElementById("msg").textContent="Thanks, "+f.n.value.split(" ")[0]+". Your application for "+f.p.value+" is received.";
+  f.reset();
+};
+</script>
+</body>
+</html>
